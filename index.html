@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Types Challenge — Learn, Play &amp; Master the 6 Basic Data Types</title>
+<meta name="description" content="An interactive training experience for adult beginners: learn Text, Number, Date / Time, Boolean, Currency and Percentage through short lessons, seven games and a final challenge.">
+<style>
+:root{--navy:#0b1f3a;--navy2:#143863;--blue:#2563eb;--teal:#0d9488;--orange:#f97316;--bg:#f3f5f9;--card:#fff;--ink:#0f1b2d;--muted:#566680;--line:#dfe5ee;--ok:#0f9d6b;--bad:#d63b3b;--r:16px;--sh:0 8px 24px rgba(11,31,58,.08)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Segoe UI",Inter,system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;font-size:18px;line-height:1.55;color:var(--ink);background:var(--bg)}
+button{font:inherit;cursor:pointer;color:inherit}
+h1,h2,h3,h4{line-height:1.2;margin:0}
+code{font-family:Consolas,"SF Mono",Menlo,monospace}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+svg{display:block}
+
+/* header */
+header.top{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;box-shadow:0 2px 14px rgba(0,0,0,.28)}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:66px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.6px;color:#fff;text-decoration:none;font-size:17px}
+.logo i{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--teal));display:grid;place-items:center;font-style:normal;font-family:Consolas,monospace;font-size:14px}
+nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap;align-items:center}
+nav a{color:#cfdcf2;text-decoration:none;padding:8px 12px;border-radius:8px;font-size:16px;font-weight:600}
+nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.mini-prog{display:flex;align-items:center;gap:10px;font-size:14px;color:#cfdcf2;min-width:170px}
+.mini-prog .bar{background:rgba(255,255,255,.18);height:8px}
+
+/* buttons */
+.btn{border:0;border-radius:12px;padding:12px 22px;font-weight:700;transition:transform .15s,box-shadow .15s,background .15s;background:#e8edf5;color:var(--ink)}
+.btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 14px rgba(11,31,58,.15)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.teal{background:var(--teal);color:#fff}
+.btn.orange{background:var(--orange);color:#fff}
+.btn.ghost{background:transparent;border:2px solid #c3cfe0}
+.btn.sm{padding:7px 14px;font-size:15px;border-radius:9px}
+.btn.big{padding:16px 34px;font-size:20px}
+.actions{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* hero */
+.hero{background:radial-gradient(1200px 500px at 85% -10%,#1d4f91 0%,transparent 60%),linear-gradient(160deg,var(--navy),#10294d);color:#fff;padding:70px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.eyebrow{display:inline-block;background:rgba(249,115,22,.16);color:#ffb480;border:1px solid rgba(249,115,22,.4);padding:4px 14px;border-radius:99px;font-size:14px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(38px,6vw,64px);letter-spacing:-1px}
+.hero h1 span{background:linear-gradient(90deg,#60a5fa,#2dd4bf);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:clamp(18px,2.2vw,22px);color:#cfdcf2;max-width:560px;margin:18px 0 28px}
+.hero .actions{margin-top:0}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tile{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:16px 10px;text-align:center;animation:float 5s ease-in-out infinite;backdrop-filter:blur(4px)}
+.tile:nth-child(2n){animation-delay:-1.4s}.tile:nth-child(3n){animation-delay:-2.7s}
+.tile svg{width:30px;height:30px;margin:0 auto 8px;color:var(--c)}
+.tile code{display:block;font-weight:700;font-size:17px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tile small{color:#9fb4d6;font-size:13px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* sections */
+section.block{padding:64px 0}
+section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-head{max-width:720px;margin-bottom:34px}
+.sec-head .kick{color:var(--teal);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:14px}
+.sec-head h2{font-size:clamp(28px,4vw,40px);margin:6px 0 10px}
+.sec-head p{color:var(--muted);margin:0}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* learn cards */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
+.lcard{padding:22px;border-top:5px solid var(--c);display:flex;flex-direction:column;gap:12px}
+.lc-head{display:flex;align-items:center;gap:14px}
+.lc-head small{color:var(--muted);font-weight:600}
+.lc-head h3{font-size:22px}
+.ico{width:52px;height:52px;border-radius:14px;background:color-mix(in srgb,var(--c) 13%,#fff);color:var(--c);display:grid;place-items:center;flex:none}
+.ico svg{width:28px;height:28px}
+.done-badge{margin-left:auto;font-size:13px;font-weight:700;color:var(--ok);background:#e6f7f0;padding:3px 10px;border-radius:99px;display:none;white-space:nowrap}
+.lcard.explored .done-badge{display:block}
+.def{font-size:19px;font-weight:600;margin:0}
+.exs{display:grid;gap:8px}
+.ex{display:flex;align-items:center;gap:10px;background:#f6f8fb;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:15px}
+.ex code{color:var(--c);font-weight:800;font-size:16px}
+.ex span{color:var(--muted);margin-left:auto;text-align:right}
+.why{margin:0;color:var(--muted);font-size:16px}
+.try{background:#f8fafc;border:1px dashed #c3cfe0;border-radius:12px;padding:14px;margin-top:auto}
+.try h4{font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--c);margin-bottom:10px}
+.try label{display:block;font-size:15px;font-weight:600;margin-bottom:8px}
+.try input[type=text],.try input[type=date]{width:100%;padding:9px 12px;border:2px solid var(--line);border-radius:9px;font:inherit;margin-top:4px}
+.try input[type=range]{width:100%;accent-color:var(--c)}
+.try .row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.kv{display:flex;justify-content:space-between;gap:10px;font-size:15px;padding:4px 0;border-bottom:1px solid #e9eef5}
+.kv:last-child{border:0}
+.kv span{color:var(--muted)}
+.kv code{font-weight:700;color:var(--ink);text-align:right;word-break:break-all}
+.switch{display:flex;align-items:center;gap:12px;cursor:pointer;font-weight:600;margin-bottom:10px}
+.switch input{position:absolute;opacity:0}
+.switch .trk{width:54px;height:30px;border-radius:99px;background:#b8c4d6;position:relative;transition:.2s;flex:none}
+.switch .trk::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+.switch input:checked+.trk{background:var(--c)}
+.switch input:checked+.trk::after{left:27px}
+.switch input:focus-visible+.trk{outline:3px solid var(--orange);outline-offset:2px}
+
+/* employee record */
+.rec{max-width:760px;background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.rec-row{display:grid;grid-template-columns:1.1fr 1.2fr auto;gap:12px;align-items:center;padding:13px 20px;border-bottom:1px solid var(--line);border-left:5px solid var(--c)}
+.rec-row:last-of-type{border-bottom:0}
+.rl{color:var(--muted);font-weight:600}
+.rv{font-weight:700;font-size:17px}
+.rt{display:none;align-items:center;gap:6px;color:var(--c);font-weight:800;font-size:15px;justify-self:end}
+.rt svg{width:20px;height:20px}
+.rec-row.shown .rt{display:flex;animation:pop .35s}
+.rec-row.shown .rb{display:none}
+.rec-foot{padding:12px 20px;background:#f6f8fb;border-top:1px solid var(--line);display:flex;justify-content:flex-end}
+
+/* games */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.tab{background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px 16px;font-weight:700;font-size:16px;display:flex;gap:8px;align-items:center;transition:.15s}
+.tab b{width:26px;height:26px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:14px}
+.tab:hover{border-color:var(--blue)}
+.tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tab.active b{background:var(--orange)}
+.tab.done::after{content:"✓";color:var(--ok);font-weight:800}
+.tab.active.done::after{color:#6ee7b7}
+.game{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh);overflow:hidden}
+.g-head{display:flex;justify-content:space-between;gap:16px;padding:20px 24px;background:linear-gradient(90deg,#eef4ff,#ecf9f7);border-bottom:1px solid var(--line);flex-wrap:wrap;align-items:center}
+.g-head h3{font-size:24px}
+.instr{margin:4px 0 0;color:var(--muted);font-size:16px;max-width:620px}
+.g-tools{display:flex;gap:10px;align-items:center}
+.pill{background:var(--navy);color:#fff;padding:7px 16px;border-radius:99px;font-weight:600;font-size:15px;white-space:nowrap}
+.pill b{color:#ffb480;margin-left:4px}
+.g-body{padding:24px}
+.pool{display:flex;flex-wrap:wrap;gap:10px;min-height:66px;padding:14px;background:#f3f6fb;border:2px dashed #c3cfe0;border-radius:14px;margin-bottom:18px;align-items:center}
+.pool:empty::after{content:"All values placed!";color:var(--ok);font-weight:700}
+.chip{padding:9px 16px;background:#fff;border:2px solid var(--navy2);color:var(--navy);border-radius:10px;font-family:Consolas,monospace;font-weight:700;cursor:grab;user-select:none;box-shadow:0 2px 0 rgba(0,0,0,.08);transition:transform .12s}
+.chip:hover{transform:translateY(-2px)}
+.chip.sel{background:var(--orange);color:#fff;border-color:var(--orange);transform:translateY(-3px)}
+.chip.ok{border-color:var(--ok);background:#e9f8f1;color:#0a6b49;cursor:default;box-shadow:none;font-size:14px;padding:4px 10px;margin:3px;animation:pop .35s}
+.chip.bad{animation:shake .4s;border-color:var(--bad)}
+.buckets{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bucket{border:2px solid color-mix(in srgb,var(--c) 40%,#fff);border-radius:14px;background:#fff;min-height:112px;transition:.15s}
+.bucket.over{background:color-mix(in srgb,var(--c) 12%,#fff);transform:scale(1.02)}
+.b-head{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--c);color:#fff;border-radius:11px 11px 0 0;font-weight:700}
+.b-head svg{width:20px;height:20px}
+.b-drop{padding:8px;min-height:62px}
+.toast{min-height:28px;margin-top:14px;font-weight:600}
+.toast.ok{color:var(--ok)}.toast.bad{color:var(--bad)}
+.matcher{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mcol{display:flex;flex-direction:column;gap:10px}
+.mcard{text-align:left;padding:13px 16px;border-radius:12px;border:2px solid var(--line);background:#fff;font-weight:600;font-size:16px;transition:.15s;display:flex;align-items:center;gap:8px}
+.mcard svg{width:22px;height:22px;flex:none}
+.mcard:hover:not(.matched){border-color:var(--blue);background:#f4f8ff}
+.mcard.sel{border-color:var(--orange);background:#fff4ea;transform:scale(1.02)}
+.mcard.matched{border-color:var(--c,var(--ok));background:color-mix(in srgb,var(--c,var(--ok)) 12%,#fff);cursor:default;animation:pop .35s}
+.mcard.shake{animation:shake .4s;border-color:var(--bad)}
+.hintline{color:var(--muted);font-size:15px;margin:0 0 14px}
+.prog{display:flex;align-items:center;gap:12px;margin-bottom:18px;font-size:15px;color:var(--muted);font-weight:600}
+.bar{flex:1;height:8px;background:#e4eaf3;border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--teal));transition:width .4s;width:0}
+.q-card{font-size:1.3em;font-weight:700;padding:22px;background:#f5f8fd;border-radius:14px;margin-bottom:16px;border:1px solid var(--line)}
+.q-card small{display:block;font-size:13px;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.tf-row{display:flex;gap:14px}
+.tf{flex:1;padding:18px;font-size:22px;font-weight:800;border-radius:14px;border:2px solid var(--line);background:#fff;transition:.15s}
+.tf.t:hover:not(:disabled){border-color:var(--teal);background:#effaf8}
+.tf.f:hover:not(:disabled){border-color:var(--orange);background:#fff6ee}
+.tf.right,.opt.right{background:#e6f7f0!important;border-color:var(--ok)!important;color:#0a6b49}
+.tf.wrong,.opt.wrong{background:#fdeaea!important;border-color:var(--bad)!important;color:#9b1c1c}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;padding:14px 18px;border-radius:12px;border:2px solid var(--line);background:#fff;font-weight:600;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--blue);background:#f4f8ff}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tbtn{display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;border:2px solid var(--line);background:#fff;font-weight:700;transition:.15s}
+.tbtn svg{width:24px;height:24px;color:var(--c);flex:none}
+.tbtn:hover:not(:disabled){border-color:var(--c);background:color-mix(in srgb,var(--c) 8%,#fff);transform:translateY(-2px)}
+.tbtn.right{background:#e6f7f0;border-color:var(--ok)}
+.tbtn.wrong{background:#fdeaea;border-color:var(--bad)}
+.tbtn kbd{margin-left:auto;font-size:12px;background:#eef2f7;border-radius:5px;padding:1px 7px;color:var(--muted)}
+.fb{margin-top:16px;padding:14px 18px;border-radius:12px;border-left:6px solid;animation:pop .3s}
+.fb.ok{background:#e9f8f1;border-color:var(--ok)}
+.fb.bad{background:#fdeeee;border-color:var(--bad)}
+.mk{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;background:#f5f8fd;border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:18px}
+.mk small{display:block;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.7px}
+.mk b,.mk code{font-size:20px;font-weight:800}
+.badge{display:inline-block;background:var(--navy);color:#fff;padding:3px 14px;border-radius:99px;font-weight:700;font-size:16px}
+.ask{font-weight:700;margin:6px 0 12px}
+.speed-intro{text-align:center;padding:20px 10px}
+.speed-intro ul{display:inline-block;text-align:left;color:var(--muted);margin:10px 0 24px;padding-left:20px}
+.sp-top{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+.timer{font-size:38px;font-weight:800;color:var(--navy);min-width:86px;font-variant-numeric:tabular-nums}
+.timer.low{color:var(--bad)}
+.sp-top .bar{height:12px}
+.sp-stats{display:flex;gap:18px;justify-content:space-between;color:var(--muted);font-weight:600;font-size:15px}
+.sp-val{font-family:Consolas,monospace;font-size:clamp(34px,6vw,60px);font-weight:800;text-align:center;padding:26px 10px;color:var(--navy);border-radius:14px;transition:background .2s}
+.sp-val.ok{background:#e6f7f0}.sp-val.bad{background:#fdeaea}
+.result{text-align:center;padding:10px}
+.ring{--p:0;width:150px;height:150px;border-radius:50%;margin:10px auto;display:grid;place-items:center;background:conic-gradient(var(--teal) calc(var(--p)*1%),#e4eaf3 0)}
+.ring span{width:112px;height:112px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:30px;font-weight:800}
+.result h3{font-size:28px;color:var(--navy)}
+.result p{margin:6px 0;color:var(--muted)}
+.result .big{font-size:22px;color:var(--ink)}
+.result .btn{margin:14px 6px 0}
+.final-intro{text-align:center;padding:30px 10px}
+.final-intro ul{display:inline-flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;justify-content:center;margin:16px 0 24px}
+.final-intro li{background:#eef4ff;color:var(--navy2);padding:6px 14px;border-radius:99px;font-weight:700;font-size:15px}
+
+/* footer */
+footer{background:var(--navy);color:#b9c8e0;padding:38px 0;font-size:16px}
+footer .wrap{display:flex;gap:20px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+footer strong{color:#fff}
+
+/* trainer */
+#trainer{position:fixed;inset:0;z-index:100;background:var(--bg);display:none;flex-direction:column}
+#trainer.open{display:flex}
+.tr-top,.tr-bottom{background:var(--navy);color:#fff;padding:10px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.tr-top .lbl{font-weight:700;font-size:18px}
+.tr-top .sp{margin-left:auto;display:flex;gap:8px}
+.tr-top .tag{background:var(--orange);padding:3px 12px;border-radius:99px;font-size:13px;font-weight:800;letter-spacing:.8px;text-transform:uppercase}
+.tr-stage{flex:1;overflow:auto;padding:30px clamp(16px,4vw,60px)}
+.tr-bottom{gap:20px}
+.tr-mid{flex:1;min-width:200px;display:flex;flex-direction:column;gap:6px}
+.tr-mid .bar{background:rgba(255,255,255,.2)}
+.tr-stats{font-size:14px;color:#cfdcf2;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.slide{max-width:1100px;margin:0 auto;animation:slideIn .4s ease}
+@keyframes slideIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+.slide h2{font-size:clamp(30px,4.5vw,52px);letter-spacing:-.5px}
+.slide .sub{font-size:clamp(18px,2.2vw,26px);color:var(--muted);margin:10px 0 24px}
+.sl-intro{text-align:center;padding-top:5vh}
+.sl-intro h2{font-size:clamp(38px,6vw,72px)}
+.sl-intro h2 span{background:linear-gradient(90deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+.objs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px;text-align:left}
+.objs div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--sh)}
+.objs b{display:block;color:var(--teal);margin-bottom:6px}
+.sl-topic{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:start}
+.sl-topic .bigico{width:150px;height:150px;border-radius:32px;background:color-mix(in srgb,var(--c) 13%,#fff);color:var(--c);display:grid;place-items:center}
+.sl-topic .bigico svg{width:84px;height:84px}
+.sl-topic .def{font-size:clamp(22px,3vw,34px);font-weight:700;margin:14px 0 20px}
+.sl-topic .exs{grid-template-columns:1fr 1fr;gap:14px}
+.sl-topic .ex{font-size:18px;padding:14px 18px}
+.sl-topic .ex code{font-size:clamp(18px,2.4vw,28px)}
+.sl-topic .why{font-size:clamp(17px,2vw,22px);margin-top:20px;color:var(--ink)}
+.talk{margin-top:22px;background:#fff6ee;border-left:6px solid var(--orange);padding:16px 22px;border-radius:12px;font-size:clamp(17px,2vw,22px)}
+.talk b{color:var(--orange)}
+.tq .opts{margin:22px 0}
+.tq .opt{font-size:clamp(18px,2.4vw,28px);padding:20px 26px;font-family:Consolas,monospace;display:flex;gap:16px;align-items:center}
+.tq .opt i{font-style:normal;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:"Segoe UI",sans-serif;flex:none}
+.tq .opt.picked{border-color:var(--orange);background:#fff4ea}
+.tq .qtxt{font-size:clamp(24px,3.4vw,40px);font-weight:800}
+.tr-game .launch{text-align:center;padding:5vh 10px}
+.tr-game .launch p{font-size:clamp(18px,2.2vw,26px);color:var(--muted);max-width:760px;margin:12px auto 28px}
+.proj{font-size:1.12em}
+.proj .chip{font-size:1.1em;padding:12px 20px}
+.proj .tbtn{padding:18px}
+.wrapgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.wrapgrid div{background:#fff;border:1px solid var(--line);border-top:4px solid var(--c);border-radius:12px;padding:14px 16px}
+.wrapgrid b{color:var(--c)}
+.statbox{display:flex;gap:16px;flex-wrap:wrap;margin-top:22px}
+.statbox div{flex:1;min-width:170px;background:var(--navy);color:#fff;border-radius:14px;padding:18px;text-align:center}
+.statbox b{display:block;font-size:34px;color:#ffb480}
+
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+@keyframes pop{0%{transform:scale(.92);opacity:.5}60%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}
+.shake{animation:shake .4s}
+.pop{animation:pop .3s}
+
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}.hero .wrap{grid-template-columns:1fr}.objs,.wrapgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){body{font-size:17px}.grid{grid-template-columns:1fr}.buckets{grid-template-columns:repeat(2,1fr)}.tgrid{grid-template-columns:repeat(2,1fr)}.matcher{gap:10px}.mcard{font-size:14px;padding:10px}.mk{grid-template-columns:1fr}.rec-row{grid-template-columns:1fr auto}.rl{grid-column:1/-1}.sl-topic{grid-template-columns:1fr}.sl-topic .bigico{width:90px;height:90px}.sl-topic .bigico svg{width:50px;height:50px}.sl-topic .exs{grid-template-columns:1fr}.objs,.wrapgrid{grid-template-columns:1fr}nav{margin-left:0}.mini-prog{min-width:0;flex:1}.g-body{padding:16px}.tf{font-size:18px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><i>01</i><span>DATA TYPES CHALLENGE</span></a>
+    <div class="mini-prog" title="Your progress is saved on this device"><span id="pg-text">0/14 completed</span><div class="bar" id="pg-bar"><i></i></div></div>
+    <nav aria-label="Main">
+      <a href="#learn">Learn</a><a href="#reallife">Real Life</a><a href="#games">Games</a><a href="#final">Final Challenge</a>
+      <button class="btn orange sm" id="open-trainer" type="button">▶ Trainer Mode</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Interactive training experience</span>
+      <h1>Data Types <span>Challenge</span></h1>
+      <p class="lead">Learn, Play &amp; Master the 6 Basic Data Types. Short explanations, seven professional games and a final challenge — built for adult beginners.</p>
+      <div class="actions">
+        <a class="btn orange big" href="#learn" style="text-decoration:none">Start Learning</a>
+        <a class="btn ghost big" href="#games" style="text-decoration:none;color:#fff;border-color:rgba(255,255,255,.4)">Play the Games</a>
+      </div>
+    </div>
+    <div class="tiles" id="hero-tiles" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section class="block" id="learn">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kick">Step 1 · Learn</span><h2>Six data types, one simple idea each</h2><p>Every value in a spreadsheet, form or database has a type. The type tells the computer what the value is and what can be done with it. Read each card, then try the small activity.</p></div>
+    <div class="grid" id="learn-grid"></div>
+  </div>
+</section>
+
+<section class="block alt" id="reallife">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kick">Real life</span><h2>One order record, six data types</h2><p>An online store keeps all six types in a single order. Look at each field, decide its type, then reveal it.</p></div>
+    <div id="rec-mount" class="reveal"></div>
+  </div>
+</section>
+
+<section class="block" id="games">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kick">Step 2 · Play</span><h2>Seven challenges, increasing difficulty</h2><p>Earn points, build accuracy and unlock the final challenge. Every game has a restart button and your best result is saved on this device.</p></div>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div id="game-stage"></div>
+  </div>
+</section>
+
+<section class="block alt" id="final">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="kick">Step 3 · Prove it</span><h2>Final Challenge</h2><p>Ten mixed questions: multiple choice, drag &amp; drop, matching, true or false and classification.</p></div>
+    <div id="final-stage"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>DATA TYPES CHALLENGE</strong><br>Learn, Play &amp; Master the 6 Basic Data Types</div>
+    <div>Progress is stored only in your browser. <button class="btn ghost sm" id="reset-all" type="button" style="color:#fff;border-color:#4a6590">Reset my progress</button></div>
+  </div>
+</footer>
+
+<!-- Trainer presentation mode -->
+<div id="trainer" role="dialog" aria-modal="true" aria-label="Trainer presentation mode">
+  <div class="tr-top">
+    <span class="tag">Trainer Mode</span><span class="lbl" id="tr-label"></span>
+    <div class="sp">
+      <button class="btn sm" id="tr-fs" type="button">⛶ Fullscreen</button>
+      <button class="btn sm" id="tr-reset" type="button">↻ Restart session</button>
+      <button class="btn orange sm" id="tr-exit" type="button">✕ Exit</button>
+    </div>
+  </div>
+  <div class="tr-stage" id="tr-stage"></div>
+  <div class="tr-bottom">
+    <button class="btn primary" id="tr-prev" type="button">← Previous</button>
+    <div class="tr-mid">
+      <div class="bar" id="tr-prog"><i></i></div>
+      <div class="tr-stats"><span id="tr-count"></span><span id="tr-stats"></span></div>
+    </div>
+    <button class="btn primary" id="tr-next" type="button">Next →</button>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+/* ---------- helpers ---------- */
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const h=(tag,cls,html)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const sample=(a,n)=>shuffle(a).slice(0,n);
+const pts=s=>Math.max(0,s.correct*10-s.mistakes*2);
+
+/* ---------- saved progress ---------- */
+const KEY='dtc_progress_v2';
+let P=(function(){try{const p=JSON.parse(localStorage.getItem(KEY));if(p&&p.learn&&p.games)return p}catch(e){}return{learn:{},games:{}}})();
+const saveP=()=>{try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}};
+const TOTAL_STEPS=14;
+function updateProgress(){
+  const done=Object.keys(P.learn).filter(k=>P.learn[k]).length+Object.keys(P.games).length;
+  $('#pg-bar i').style.width=Math.min(100,done/TOTAL_STEPS*100)+'%';
+  $('#pg-text').textContent=done+'/'+TOTAL_STEPS+' completed';
+  $$('.lcard').forEach(c=>c.classList.toggle('explored',!!P.learn[c.dataset.id]));
+  $$('.tab').forEach(t=>t.classList.toggle('done',!!P.games[t.dataset.g]));
+}
+function explore(id){if(!P.learn[id]){P.learn[id]=true;saveP();updateProgress()}}
+function recordGame(id,score,max){
+  const pct=Math.round(Math.min(score,max)/max*100);
+  const prev=(P.games[id]&&P.games[id].best)||0;
+  P.games[id]={best:Math.max(prev,pct)};saveP();updateProgress();return P.games[id].best;
+}
+
+/* ---------- cleanups (timers, key listeners) ---------- */
+let cleanups=[];
+const onCleanup=f=>cleanups.push(f);
+function runCleanups(){cleanups.forEach(f=>{try{f()}catch(e){}});cleanups=[]}
+
+/* ---------- data ---------- */
+const SV=p=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>';
+const TYPES=[
+{id:'text',name:'Text',sub:'Words and codes',color:'#2563eb',glyph:'Laptop',
+ icon:SV('<path d="M7 7h4v4c0 3-1 5-4 6M15 7h4v4c0 3-1 5-4 6"/>'),
+ def:'Letters, words and codes. Anything you read but do not calculate with.',
+ ex:[['Laptop','A product name'],['00125','A product code']],
+ why:'A code such as 00125 looks like a number, but it is Text: you never add codes together, and Text keeps the leading zeros.',
+ talk:'Which fields in your work are Text? Think of names, emails, product codes and phone numbers.'},
+{id:'number',name:'Number',sub:'Plain numbers',color:'#0d9488',glyph:'4500',
+ icon:SV('<path d="M9 4 7 20M17 4l-2 16M4 9h17M3 15h17"/>'),
+ def:'A plain number you can count and calculate with.',
+ ex:[['25','Laptops in stock'],['4500','Units sold this year']],
+ why:'Numbers can be added, averaged and sorted. Whole numbers and decimals are both Numbers, as long as there is no symbol attached.',
+ talk:'What do you count or measure every day at work? Each result is a Number.'},
+{id:'datetime',name:'Date / Time',sub:'Calendar and clock',color:'#d97706',glyph:'2026-10-25',
+ icon:SV('<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>'),
+ def:'A calendar date, a time of day, or both.',
+ ex:[['2026-10-25','An order date'],['14:30','A meeting time']],
+ why:'Dates let you sort, compare and calculate time: days until a deadline, hours worked, age of an invoice.',
+ talk:'Which deadlines, schedules or timestamps do you track?'},
+{id:'boolean',name:'Boolean',sub:'TRUE or FALSE',color:'#0284c7',glyph:'TRUE',
+ icon:SV('<rect x="2.5" y="7" width="19" height="10" rx="5"/><circle cx="16.5" cy="12" r="2.6"/>'),
+ def:'A value that can only be TRUE or FALSE.',
+ ex:[['TRUE','The item is in stock'],['FALSE','The invoice is paid']],
+ why:'Booleans answer yes/no questions and drive decisions: if the invoice is paid, then send a receipt.',
+ talk:'Name a yes/no question your team answers every day. That field is a Boolean.'},
+{id:'currency',name:'Currency',sub:'Amounts of money',color:'#f97316',glyph:'SAR 3500',
+ icon:SV('<circle cx="12" cy="12" r="9"/><path d="M14.5 9.2a2.6 2.2 0 0 0-2.5-1.6c-1.5 0-2.5.8-2.5 2s1 1.7 2.5 2 2.5.8 2.5 2-1 2-2.5 2a2.6 2.2 0 0 1-2.5-1.6M12 6v1.6M12 16.4V18"/>'),
+ def:'An amount of money, shown with a currency symbol or code.',
+ ex:[['SAR 3500','The price of a laptop'],['$49.99','A subscription fee']],
+ why:'Currency is a Number with a money format. The symbol tells everyone what the amount means: SAR 3500 is not just 3500.',
+ talk:'Which prices, salaries or budgets do you handle? Each one is Currency.'},
+{id:'percentage',name:'Percentage',sub:'Part out of 100',color:'#475569',glyph:'25%',
+ icon:SV('<path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>'),
+ def:'A number shown with a % sign: a part out of 100.',
+ ex:[['25%','A discount rate'],['87.5%','A course pass rate']],
+ why:'A computer stores 25% as 0.25. Use Percentages for rates, discounts, growth and progress.',
+ talk:'Where do you see rates at work: discounts, tax, attendance, completion?'}
+];
+const TM={};TYPES.forEach(t=>TM[t.id]=t);
+const ALL=TYPES.map(t=>t.id);
+const HINT={text:'Words and codes are Text, even when they contain digits.',number:'A plain number with no symbol.',datetime:'It is a date or a time.',boolean:'Only TRUE or FALSE.',currency:'It is an amount of money with a currency symbol or code.',percentage:'It has a % sign.'};
+const it=(v,t,hint)=>({v,t,hint:hint||HINT[t]});
+const POOL={
+ text:[it('Laptop','text'),it('00125','text','A code with leading zeros is Text.'),it('Riyadh','text'),it('info@company.com','text','An email address is Text.'),it('Invoice-204','text'),it('Sales Report','text')],
+ number:[it('25','number'),it('4500','number'),it('120','number'),it('-5','number','Negative numbers are still Numbers.'),it('3.14','number','Decimals are Numbers too.'),it('40.5','number')],
+ datetime:[it('2026-10-25','datetime'),it('14:30','datetime','A time of day is a Date / Time value.'),it('08/11/2026','datetime'),it('2026-11-08 09:15','datetime'),it('31/12/2027','datetime'),it('03:45 PM','datetime')],
+ boolean:[it('TRUE','boolean'),it('FALSE','boolean'),it('is_active = TRUE','boolean'),it('paid = FALSE','boolean')],
+ currency:[it('SAR 3500','currency'),it('$49.99','currency'),it('EUR 120.50','currency'),it('SAR 12,450.75','currency'),it('1,200 SAR','currency'),it('£75','currency')],
+ percentage:[it('25%','percentage'),it('87.5%','percentage'),it('100%','percentage'),it('5%','percentage'),it('12.5%','percentage'),it('0.5%','percentage')]
+};
+const HARD=[it('007','text','Codes with leading zeros are Text.'),it('"TRUE"','text','Inside quotation marks, TRUE is just text.'),it('4500','number'),it('3500 SAR','currency','A currency code turns a number into Currency.'),it('12:00 AM','datetime'),it('99.5%','percentage')];
+const ALLPOOL=[].concat(...Object.values(POOL));
+const SPEED=ALLPOOL.concat(HARD);
+
+const TF=[
+ {s:'25 is a Number.',a:true,e:'It is a plain number with no symbol, so it is a Number.'},
+ {s:'The product code 00125 is best stored as Text.',a:true,e:'Text keeps the leading zeros. As a Number it would become 125.'},
+ {s:'TRUE and FALSE are the only two Boolean values.',a:true,e:'A Boolean has exactly two possible values.'},
+ {s:'SAR 3500 is a Percentage.',a:false,e:'SAR 3500 is an amount of money, so it is Currency.'},
+ {s:'25% is a Currency value.',a:false,e:'The % sign makes it a Percentage.'},
+ {s:'2026-10-25 is a Date / Time value.',a:true,e:'It represents a calendar date.'},
+ {s:'A Boolean can have three possible values.',a:false,e:'A Boolean can only be TRUE or FALSE.'},
+ {s:'A phone number such as 0551234567 should be stored as a Number.',a:false,e:'You never calculate with a phone number, and Text keeps the leading zero.'},
+ {s:'Currency values represent amounts of money.',a:true,e:'That is exactly what the Currency type is for.'},
+ {s:'The word TRUE written in quotation marks ("TRUE") is a Boolean.',a:false,e:'Quotation marks make it Text.'},
+ {s:'Laptop is Text.',a:true,e:'Words are Text.'},
+ {s:'A discount of 25% is a Percentage.',a:true,e:'A part out of 100 shown with % is a Percentage.'},
+ {s:'14:30 is a Date / Time value.',a:true,e:'A time of day belongs to the Date / Time type.'}
+];
+const WHO=[
+ {l:1,q:'I represent whether an item is available in the warehouse. Who am I?',a:'boolean',e:'Available or not available has only two answers: a Boolean.'},
+ {l:1,q:'I am the name of a product: Laptop. Who am I?',a:'text',e:'Names are words, so they are Text.'},
+ {l:1,q:'I am the number of laptops in stock: 25. Who am I?',a:'number',e:'A plain count is a Number.'},
+ {l:1,q:'I am the price of a laptop: SAR 3500. Who am I?',a:'currency',e:'An amount of money with a currency code is Currency.'},
+ {l:1,q:'I am the date an order was placed: 2026-10-25. Who am I?',a:'datetime',e:'An order date is a Date / Time value.'},
+ {l:1,q:'I am the discount offered to a customer: 25%. Who am I?',a:'percentage',e:'A rate with a % sign is a Percentage.'},
+ {l:2,q:'I am an employee ID, 00125. I keep my leading zeros and nobody ever adds me up. Who am I?',a:'text',e:'Identifiers are Text, and Text keeps the leading zeros.'},
+ {l:2,q:'I am the time a meeting starts: 14:30. Who am I?',a:'datetime',e:'A time of day belongs to Date / Time.'},
+ {l:2,q:'I am whether an invoice has been paid. Who am I?',a:'boolean',e:'Paid or not paid is a yes/no answer: a Boolean.'},
+ {l:2,q:'I am the total sales of the month: SAR 125,000. Who am I?',a:'currency',e:'Money with a currency code is Currency.'},
+ {l:2,q:'I am the pass rate of a training course: 87.5%. Who am I?',a:'percentage',e:'A rate with a % sign is a Percentage.'},
+ {l:2,q:'I am the number of units sold this year: 4500. Who am I?',a:'number',e:'A plain total with no symbol is a Number.'},
+ {l:3,q:'I am a postal code, 11564. I am only a label on an address and nobody adds me up. Who am I?',a:'text',e:'Codes used as labels are Text, even when they contain only digits.'},
+ {l:3,q:'I am the VAT rate applied to an invoice: 15%. Who am I?',a:'percentage',e:'A rate shown with % is a Percentage.'},
+ {l:3,q:'I am the monthly salary of an employee: SAR 8,500. Who am I?',a:'currency',e:'It is an amount of money, so it is Currency, not just a Number.'},
+ {l:3,q:'I am the number of days between two dates: 30. Who am I?',a:'number',e:'A duration counted in days is a plain Number.'}
+];
+const MS=[
+ {f:'Product code',v:'00125',s:'number',t:'text',e:'Codes with leading zeros must be Text, or the zeros disappear.'},
+ {f:'Units in stock',v:'25',s:'text',t:'number',e:'A count you calculate with is a Number.'},
+ {f:'Order date',v:'2026-10-25',s:'text',t:'datetime',e:'A calendar date should be a Date / Time value.'},
+ {f:'Item in stock',v:'TRUE',s:'boolean',t:'boolean',e:'TRUE or FALSE is a Boolean, so this is correct.'},
+ {f:'Laptop price',v:'SAR 3500',s:'number',t:'currency',e:'An amount of money with a currency code is Currency.'},
+ {f:'Discount rate',v:'25%',s:'number',t:'percentage',e:'A value with a % sign is a Percentage.'},
+ {f:'Customer name',v:'Ahmed',s:'text',t:'text',e:'A name is Text, so this is correct.'},
+ {f:'Invoice paid?',v:'FALSE',s:'text',t:'boolean',e:'A yes/no answer is a Boolean.'},
+ {f:'Meeting time',v:'14:30',s:'number',t:'datetime',e:'A time of day is a Date / Time value.'},
+ {f:'Total sales',v:'SAR 12,450',s:'currency',t:'currency',e:'Money with a currency code is Currency, so this is correct.'},
+ {f:'Course pass rate',v:'87.5%',s:'percentage',t:'percentage',e:'A value with % is a Percentage, so this is correct.'},
+ {f:'Units sold',v:'4500',s:'number',t:'number',e:'A plain total is a Number, so this is correct.'}
+];
+const REC=[['Product name','Laptop','text'],['Quantity in stock','25','number'],['Unit price','SAR 3500','currency'],['Available','TRUE','boolean'],['Discount','25%','percentage'],['Order date','2026-10-25','datetime']];
+/* ---------- shared UI pieces ---------- */
+function levelOf(p){
+  if(p>=90)return{n:'Data Type Master',m:'Outstanding! You classify data like a professional.'};
+  if(p>=75)return{n:'Advanced Practitioner',m:'Excellent work. Only a few details left to polish.'};
+  if(p>=60)return{n:'Skilled Learner',m:'Good job! Review the types you missed and try again to reach the top level.'};
+  if(p>=40)return{n:'Developing',m:'You are building a solid foundation. Revisit the lessons and try again.'};
+  return{n:'Beginner',m:'Every expert starts here. Review the lessons above and play again; you will improve quickly.'};
+}
+function shell(root,o){
+  root.innerHTML='';
+  const head=h('div','g-head');
+  const t=h('div');const h3=h('h3');h3.textContent=o.title;const p=h('p','instr');p.textContent=o.instr;t.append(h3,p);
+  const tools=h('div','g-tools');const sc=h('span','pill','Score <b>0</b>');
+  const rb=h('button','btn ghost sm','↻ Restart');rb.type='button';rb.onclick=()=>{runCleanups();o.restart()};
+  tools.append(sc,rb);head.append(t,tools);
+  const body=h('div','g-body');root.append(head,body);
+  return{body,setScore:n=>{$('b',sc).textContent=n}};
+}
+function progBar(i,n,label){return h('div','prog','<span>'+(label||'Question')+' '+(i+1)+' of '+n+'</span><div class="bar"><i style="width:'+(i/n*100)+'%"></i></div>')}
+function fbox(ok,html){return h('div','fb '+(ok?'ok':'bad'),'<b>'+(ok?'Correct!':'Not quite.')+'</b> '+html)}
+function nextBtn(label,fn){const w=h('div','actions');const b=h('button','btn primary',label);b.type='button';b.onclick=fn;w.append(b);return w}
+function resultCard(score,max,best,restart,extra){
+  const pct=Math.round(Math.min(score,max)/max*100),L=levelOf(pct);
+  const d=h('div','result');
+  d.innerHTML='<div class="ring" style="--p:'+pct+'"><span>'+pct+'%</span></div><h3>'+L.n+'</h3><p class="big">Score: <b>'+score+'</b> / '+max+'</p><p>'+L.m+'</p>'+(extra||'')+'<p>Your best result on this device: <b>'+best+'%</b></p>';
+  const b=h('button','btn primary','↻ Play again');b.type='button';b.onclick=()=>{runCleanups();restart()};d.append(b);
+  return d;
+}
+function endGame(sh,ctx,score,max,restart,extra){
+  const best=ctx.done(score,max);
+  sh.body.innerHTML='';sh.body.append(resultCard(score,max,best,restart,extra));
+  sh.body.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function typeButtons(onPick,keys){
+  const el=h('div','tgrid'),btns={};
+  TYPES.forEach((T,i)=>{
+    const b=h('button','tbtn',T.icon+'<span>'+T.name+'</span>'+(keys?'<kbd>'+(i+1)+'</kbd>':''));
+    b.type='button';b.style.setProperty('--c',T.color);b.onclick=()=>onPick(T.id);el.append(b);btns[T.id]=b;
+  });
+  return{el,btns,lock(correct,picked){Object.values(btns).forEach(b=>b.disabled=true);btns[correct].classList.add('right');if(picked&&picked!==correct)btns[picked].classList.add('wrong')}};
+}
+
+/* ---------- Sorter (drag & drop + tap to place) ---------- */
+function Sorter(body,o){
+  let selected=null,correct=0,mistakes=0;
+  const total=o.items.length;
+  const pool=h('div','pool'),grid=h('div','buckets'),msg=h('div','toast');
+  msg.setAttribute('aria-live','polite');
+  const say=(t,c)=>{msg.textContent=t;msg.className='toast '+c};
+  function place(chip,b){
+    const item=chip._it,tid=b.dataset.type;
+    if(chip.classList.contains('ok'))return;
+    chip.classList.remove('sel');selected=null;
+    if(item.t===tid){
+      correct++;chip.classList.add('ok');chip.draggable=false;chip.removeAttribute('tabindex');chip.removeAttribute('role');
+      $('.b-drop',b).append(chip);say('Correct! '+item.v+' is a '+TM[tid].name+'.','ok');
+    }else{
+      mistakes++;b.classList.add('shake');chip.classList.add('bad');
+      setTimeout(()=>{b.classList.remove('shake');chip.classList.remove('bad')},450);
+      say(item.v+' is not a '+TM[tid].name+'. Hint: '+item.hint,'bad');
+    }
+    const s={correct,mistakes,total};
+    o.onUpdate&&o.onUpdate(s);
+    if(correct===total)setTimeout(()=>o.onDone(s),350);
+  }
+  function select(chip){
+    if(chip.classList.contains('ok'))return;
+    const was=chip.classList.contains('sel');
+    $$('.chip.sel',pool).forEach(c=>c.classList.remove('sel'));
+    selected=null;
+    if(!was){chip.classList.add('sel');selected=chip}
+  }
+  o.types.forEach(tid=>{
+    const T=TM[tid],b=h('div','bucket','<div class="b-head">'+T.icon+'<span>'+T.name+'</span></div><div class="b-drop"></div>');
+    b.dataset.type=tid;b.style.setProperty('--c',T.color);b.tabIndex=0;b.setAttribute('role','button');b.setAttribute('aria-label','Category '+T.name);
+    b.addEventListener('dragover',e=>{e.preventDefault();b.classList.add('over')});
+    b.addEventListener('dragleave',()=>b.classList.remove('over'));
+    b.addEventListener('drop',e=>{
+      e.preventDefault();b.classList.remove('over');
+      const id=e.dataTransfer.getData('text/plain');
+      const chip=$$('.chip',pool).find(c=>c.dataset.id===id);
+      if(chip)place(chip,b);
+    });
+    b.addEventListener('click',()=>{if(selected)place(selected,b)});
+    b.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&selected){e.preventDefault();place(selected,b)}});
+    grid.append(b);
+  });
+  shuffle(o.items).forEach((item,i)=>{
+    const c=h('div','chip');c.textContent=item.v;c._it=item;c.dataset.id=String(i);c.draggable=true;c.tabIndex=0;c.setAttribute('role','button');
+    c.addEventListener('dragstart',e=>{e.dataTransfer.setData('text/plain',c.dataset.id);e.dataTransfer.effectAllowed='move';$$('.chip.sel',pool).forEach(x=>x.classList.remove('sel'));selected=null});
+    c.addEventListener('click',()=>select(c));
+    c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(c)}});
+    pool.append(c);
+  });
+  const hint=h('p','hintline','Drag each value into its category. On a touch screen or keyboard: select a value, then select the category.');
+  body.append(hint,pool,grid,msg);
+}
+
+/* ---------- Matcher (click-to-pair cards) ---------- */
+function Matcher(body,o){
+  let sel=null,matched=0,mistakes=0;
+  const wrap=h('div','matcher'),L=h('div','mcol'),R=h('div','mcol'),msg=h('div','toast');
+  msg.setAttribute('aria-live','polite');
+  const n=o.pairs.length;
+  const upd=()=>o.onUpdate&&o.onUpdate({correct:matched,mistakes});
+  o.pairs.forEach(p=>{
+    const b=h('button','mcard');b.type='button';b.dataset.id=p.id;
+    if(p.lh)b.innerHTML=p.lh;else b.textContent=p.l;
+    if(p.c)b.style.setProperty('--c',p.c);
+    b.onclick=()=>{if(b.classList.contains('matched'))return;$$('.mcard.sel',L).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');sel=b;msg.textContent='';};
+    L.append(b);
+  });
+  shuffle(o.pairs).forEach(p=>{
+    const b=h('button','mcard');b.type='button';b.dataset.id=p.id;b.textContent=p.r;
+    b.onclick=()=>{
+      if(b.classList.contains('matched'))return;
+      if(!sel){msg.textContent='Select a card on the left first.';msg.className='toast bad';return}
+      if(sel.dataset.id===b.dataset.id){
+        if(p.c){b.style.setProperty('--c',p.c)}
+        sel.classList.remove('sel');sel.classList.add('matched');b.classList.add('matched');sel=null;matched++;
+        msg.textContent='Match!';msg.className='toast ok';upd();
+        if(matched===n)setTimeout(()=>o.onDone({correct:matched,mistakes}),350);
+      }else{
+        mistakes++;const s=sel;sel=null;s.classList.remove('sel');
+        s.classList.add('shake');b.classList.add('shake');
+        setTimeout(()=>{s.classList.remove('shake');b.classList.remove('shake')},450);
+        msg.textContent='Not a match. Try again.';msg.className='toast bad';upd();
+      }
+    };
+    R.append(b);
+  });
+  wrap.append(L,R);
+  body.append(h('p','hintline','Select a card on the left, then select its match on the right.'),wrap,msg);
+}
+
+/* ---------- Games ---------- */
+const GAMES={};
+
+GAMES.g1={name:'Drag & Drop',blurb:'Drag each value into its correct data type category. Two levels: standard, then tricky values.',run(root,ctx){
+  const L1=[it('Laptop','text'),it('4500','number'),it('2026-10-25','datetime'),it('TRUE','boolean'),it('SAR 3500','currency'),it('25%','percentage')];
+  let total=0,max=0;
+  const level=n=>{
+    const sh=shell(root,{title:'Drag & Drop · Level '+n+' of 2',instr:n===1?'Drag each value into the correct data type.':'Level 2: tricky values. Read carefully!',restart:()=>{total=0;max=0;level(1)}});
+    const items=n===1?L1:HARD;
+    Sorter(sh.body,{items,types:ALL,
+      onUpdate:s=>sh.setScore(total+pts(s)),
+      onDone:s=>{total+=pts(s);max+=items.length*10;sh.setScore(total);
+        if(n===1){sh.body.append(h('div','fb ok','<b>Level 1 complete!</b> Ready for trickier values?'),nextBtn('Continue to Level 2 →',()=>level(2)))}
+        else endGame(sh,ctx,total,max,()=>{total=0;max=0;level(1)});}});
+  };
+  level(1);
+}};
+
+GAMES.g2={name:'Matching Challenge',blurb:'Match every data type with its definition, then with its examples.',run(root,ctx){
+  let total=0,max=0;
+  const round=n=>{
+    const sh=shell(root,{title:'Matching Challenge · Round '+n+' of 2',instr:n===1?'Match each data type with its correct definition.':'Now match each data type with its correct examples.',restart:()=>{total=0;max=0;round(1)}});
+    const pairs=TYPES.map(T=>({id:T.id,lh:T.icon+'<span>'+T.name+'</span>',r:n===1?T.def:T.ex.map(e=>e[0]).join('   ·   '),c:T.color}));
+    Matcher(sh.body,{pairs,
+      onUpdate:s=>sh.setScore(total+pts(s)),
+      onDone:s=>{total+=pts(s);max+=pairs.length*10;sh.setScore(total);
+        if(n===1)sh.body.append(h('div','fb ok','<b>Round 1 complete!</b>'),nextBtn('Continue to Round 2 →',()=>round(2)));
+        else endGame(sh,ctx,total,max,()=>{total=0;max=0;round(1)});}});
+  };
+  round(1);
+}};
+
+GAMES.g3={name:'True or False',blurb:'Read each statement and decide whether it is TRUE or FALSE. Instant feedback after every answer.',run(root,ctx){
+  const start=()=>{
+    const sh=shell(root,{title:'True or False',instr:'Read each statement and decide: TRUE or FALSE?',restart:start});
+    const qs=sample(TF,8);let i=0,score=0;
+    const show=()=>{
+      const b=sh.body;b.innerHTML='';b.append(progBar(i,qs.length,'Statement'));
+      const q=qs[i];const card=h('div','q-card');card.textContent=q.s;b.append(card);
+      const row=h('div','tf-row');let done=false;
+      [true,false].forEach(v=>{
+        const x=h('button','tf '+(v?'t':'f'),v?'TRUE':'FALSE');x.type='button';
+        x.onclick=()=>{
+          if(done)return;done=true;const ok=v===q.a;
+          if(ok){score+=10;sh.setScore(score)}
+          $$('.tf',row).forEach(y=>{y.disabled=true});
+          x.classList.add(ok?'right':'wrong');
+          if(!ok)$$('.tf',row).find(y=>y!==x).classList.add('right');
+          b.append(fbox(ok,esc(q.e)),nextBtn(i<qs.length-1?'Next statement →':'See my results',()=>{i++;if(i<qs.length)show();else endGame(sh,ctx,score,qs.length*10,start)}));
+        };
+        row.append(x);
+      });
+      b.append(row);
+    };
+    show();
+  };
+  start();
+}};
+
+GAMES.g4={name:'Who Am I?',blurb:'A real-life example describes itself. Identify which data type it is.',run(root,ctx){
+  const start=()=>{
+    const sh=shell(root,{title:'Who Am I?',instr:'Read the workplace example and choose the data type it represents. Difficulty increases as you go.',restart:start});
+    const qs=[].concat(sample(WHO.filter(w=>w.l===1),3),sample(WHO.filter(w=>w.l===2),3),sample(WHO.filter(w=>w.l===3),2));
+    let i=0,score=0;
+    const show=()=>{
+      const b=sh.body;b.innerHTML='';b.append(progBar(i,qs.length,'Challenge'));
+      const q=qs[i];const card=h('div','q-card','<small>Level '+q.l+' · Who am I?</small>');card.append(document.createTextNode(q.q));b.append(card);
+      const tb=typeButtons(id=>{
+        const ok=id===q.a;if(ok){score+=10;sh.setScore(score)}tb.lock(q.a,id);
+        b.append(fbox(ok,esc(q.e)),nextBtn(i<qs.length-1?'Next challenge →':'See my results',()=>{i++;if(i<qs.length)show();else endGame(sh,ctx,score,qs.length*10,start)}));
+      });
+      b.append(tb.el);
+    };
+    show();
+  };
+  start();
+}};
+
+GAMES.g5={name:'Data Type Sorting',blurb:'Sort 12 mixed values into the six categories. Score and completion message at the end.',run(root,ctx){
+  const start=()=>{
+    const sh=shell(root,{title:'Data Type Sorting',instr:'Sort all 12 mixed values into the six categories. Each correct value earns 10 points; each mistake costs 2.',restart:start});
+    const items=[].concat(...ALL.map(t=>sample(POOL[t],2)));
+    Sorter(sh.body,{items,types:ALL,onUpdate:s=>sh.setScore(pts(s)),onDone:s=>endGame(sh,ctx,pts(s),items.length*10,start,'<p>Mistakes: <b>'+s.mistakes+'</b>. All 12 values sorted. Well done!</p>')});
+  };
+  start();
+}};
+
+GAMES.g6={name:'Find the Mistake',blurb:'Each field has been classified. Is it correct? If not, name the right data type.',run(root,ctx){
+  const start=()=>{
+    const sh=shell(root,{title:'Find the Mistake',instr:'A system stored each value with a data type. Decide if the classification is correct. If it is a mistake, choose the right type.',restart:start});
+    const qs=sample(MS,8);let i=0,score=0;
+    const show=()=>{
+      const b=sh.body;b.innerHTML='';b.append(progBar(i,qs.length,'Record'));
+      const q=qs[i];
+      const mk=h('div','mk','<div><small>Field</small><b></b></div><div><small>Value</small><code></code></div><div><small>Stored as</small><span class="badge"></span></div>');
+      $('b',mk).textContent=q.f;$('code',mk).textContent=q.v;$('.badge',mk).textContent=TM[q.s].name;b.append(mk);
+      const isCorrect=q.s===q.t;
+      const nxt=()=>nextBtn(i<qs.length-1?'Next record →':'See my results',()=>{i++;if(i<qs.length)show();else endGame(sh,ctx,score,qs.length*10,start)});
+      b.append(h('p','ask','Is this classification correct?'));
+      const row=h('div','tf-row');
+      const ok=h('button','tf t','✔ Correct');const bad=h('button','tf f','✘ Mistake');ok.type=bad.type='button';
+      const lock=()=>{ok.disabled=bad.disabled=true};
+      ok.onclick=()=>{lock();ok.classList.add(isCorrect?'right':'wrong');
+        if(isCorrect){score+=10;sh.setScore(score);b.append(fbox(true,esc(q.e)),nxt())}
+        else b.append(fbox(false,'This was a mistake. '+esc(q.e)),nxt())};
+      bad.onclick=()=>{lock();
+        if(isCorrect){bad.classList.add('wrong');b.append(fbox(false,'This classification was actually correct. '+esc(q.e)),nxt());return}
+        bad.classList.add('right');
+        b.append(h('p','ask','Good catch. Which data type should it be?'));
+        const tb=typeButtons(id=>{
+          const good=id===q.t;if(good){score+=10;sh.setScore(score)}tb.lock(q.t,id);
+          b.append(fbox(good,esc(q.e)),nxt());
+        });
+        b.append(tb.el);
+      };
+      row.append(ok,bad);b.append(row);
+    };
+    show();
+  };
+  start();
+}};
+
+GAMES.g7={name:'Speed Challenge',blurb:'60 seconds. Classify as many values as you can. Keys 1–6 work as shortcuts.',run(root,ctx){
+  const TARGET=250;
+  const start=()=>{
+    const sh=shell(root,{title:'Speed Challenge',instr:'Classify as many values as possible in 60 seconds. +10 per correct answer, −5 per mistake, +10 bonus for every 5 correct in a row.',restart:start});
+    const box=h('div','speed-intro','<h3>Ready?</h3><ul><li>Each value appears one at a time.</li><li>Click a type, or press the keys <b>1–6</b>.</li><li>Master level starts at '+TARGET+' points.</li></ul>');
+    const go=h('button','btn orange big','Start 60-second challenge');go.type='button';go.onclick=()=>play(sh);
+    const w=h('div');w.append(go);box.append(w);sh.body.append(box);
+  };
+  const play=sh=>{
+    const b=sh.body;b.innerHTML='';sh.setScore(0);
+    let score=0,streak=0,answered=0,right=0,over=false,queue=shuffle(SPEED),cur;
+    const end=Date.now()+60000;
+    const top=h('div','sp-top','<div class="timer"><span>60</span>s</div><div class="bar"><i style="width:100%"></i></div>');
+    const stats=h('div','sp-stats','<span>Answered: <b>0</b></span><span>Streak: <b>0</b></span>');
+    const val=h('div','sp-val');
+    const tb=typeButtons(pick,true);
+    b.append(top,stats,val,tb.el);
+    const tNum=$('.timer span',top),tBox=$('.timer',top),tBar=$('.bar i',top);
+    function next(){if(!queue.length)queue=shuffle(SPEED);cur=queue.pop();val.textContent=cur.v}
+    function flash(c){val.className='sp-val '+c;setTimeout(()=>{if(!over)val.className='sp-val'},180)}
+    function pick(id){
+      if(over)return;answered++;
+      if(id===cur.t){right++;streak++;score+=10;if(streak%5===0)score+=10;flash('ok')}
+      else{score=Math.max(0,score-5);streak=0;flash('bad')}
+      sh.setScore(score);$$('b',stats)[0].textContent=answered;$$('b',stats)[1].textContent=streak;next();
+    }
+    const kd=e=>{if(!root.isConnected||over)return;if(/^[1-6]$/.test(e.key)){e.preventDefault();pick(TYPES[+e.key-1].id)}};
+    document.addEventListener('keydown',kd);
+    const iv=setInterval(()=>{
+      const left=Math.max(0,end-Date.now());
+      tNum.textContent=Math.ceil(left/1000);tBar.style.width=(left/600)+'%';tBox.classList.toggle('low',left<10000);
+      if(left<=0)stop();
+    },100);
+    const clean=()=>{clearInterval(iv);document.removeEventListener('keydown',kd)};
+    onCleanup(clean);
+    function stop(){
+      if(over)return;over=true;clean();
+      const acc=answered?Math.round(right/answered*100):0;
+      endGame(sh,ctx,Math.min(score,TARGET),TARGET,start,'<p>Raw score: <b>'+score+'</b> · Answered: <b>'+answered+'</b> · Accuracy: <b>'+acc+'%</b></p>');
+    }
+    next();
+  };
+  start();
+}};
+
+/* ---- Final challenge ---- */
+GAMES.final={name:'Final Challenge',blurb:'Ten mixed questions: multiple choice, drag & drop, matching, true or false and classification.',run(root,ctx){
+  const Q=[
+   {k:'mc',q:'Which data type is best for a product code such as 00125?',o:['Text','Number','Currency','Boolean'],a:0,e:'Codes with leading zeros are Text. As a Number the zeros would disappear.'},
+   {k:'mc',q:'Which data type should store the number of laptops in stock: 25?',o:['Text','Currency','Percentage','Number'],a:3,e:'A plain count with no symbol is a Number.'},
+   {k:'mc',q:'Which data type stores values such as 25% or 87.5%?',o:['Number','Currency','Percentage','Boolean'],a:2,e:'Values with a % sign are Percentages.'},
+   {k:'tf',q:'The word TRUE written in quotation marks is a Boolean.',a:false,e:'Quotation marks make it Text.'},
+   {k:'tf',q:'A Boolean can have only two possible values.',a:true,e:'A Boolean is either TRUE or FALSE.'},
+   {k:'cl',q:'2026-10-25',a:'datetime',e:'This is a calendar date.'},
+   {k:'cl',q:'SAR 3500',a:'currency',e:'It is an amount of money with a currency code.'},
+   {k:'mt',q:'Match each value with its data type.',pairs:[['Laptop','Text'],['25','Number'],['TRUE','Boolean'],['25%','Percentage']]},
+   {k:'mt',q:'Match each workplace field with its data type.',pairs:[['Delivery date','Date / Time'],['Item is available','Boolean'],['Product price: SAR 3500','Currency'],['Discount rate','Percentage']]},
+   {k:'dd',q:'Drag each value into the correct category.',items:[it('Laptop','text'),it('SAR 3500','currency'),it('2026-10-25','datetime'),it('25%','percentage')],types:['text','currency','datetime','percentage']}
+  ];
+  const start=()=>{
+    const sh=shell(root,{title:'Final Challenge',instr:'10 mixed questions · 10 points each. Take your time and read carefully.',restart:start});
+    let i=0,score=0;
+    const finish=()=>{
+      const L=levelOf(score);
+      endGame(sh,ctx,score,100,start,'<p>You answered <b>'+(score/10).toFixed(score%10?1:0).replace(/\.0$/,'')+'</b> of 10 questions worth full marks.</p>');
+    };
+    const after=(pointsEarned,html,ok)=>{
+      score+=pointsEarned;sh.setScore(score);
+      sh.body.append(fbox(ok,html),nextBtn(i<Q.length-1?'Next question →':'See my final score',()=>{i++;if(i<Q.length)show();else finish()}));
+    };
+    const show=()=>{
+      const b=sh.body;b.innerHTML='';b.append(progBar(i,Q.length));
+      const q=Q[i];
+      const kind={mc:'Multiple choice',tf:'True or False',cl:'Classification',mt:'Matching',dd:'Drag & drop'}[q.k];
+      const card=h('div','q-card','<small>'+kind+'</small>');
+      if(q.k==='cl'){card.append(document.createTextNode('Classify this value: '));const c=h('code');c.textContent=q.q;card.append(c)}
+      else card.append(document.createTextNode(q.q));
+      b.append(card);
+      if(q.k==='mc'){
+        const box=h('div','opts');
+        q.o.forEach((t,idx)=>{const x=h('button','opt');x.type='button';x.textContent=t;x.onclick=()=>{
+          $$('.opt',box).forEach(y=>y.disabled=true);const ok=idx===q.a;
+          x.classList.add(ok?'right':'wrong');$$('.opt',box)[q.a].classList.add('right');after(ok?10:0,esc(q.e),ok)};box.append(x)});
+        b.append(box);
+      }else if(q.k==='tf'){
+        const row=h('div','tf-row');
+        [true,false].forEach(v=>{const x=h('button','tf '+(v?'t':'f'),v?'TRUE':'FALSE');x.type='button';x.onclick=()=>{
+          $$('.tf',row).forEach(y=>y.disabled=true);const ok=v===q.a;x.classList.add(ok?'right':'wrong');
+          if(!ok)$$('.tf',row).find(y=>y!==x).classList.add('right');after(ok?10:0,esc(q.e),ok)};row.append(x)});
+        b.append(row);
+      }else if(q.k==='cl'){
+        const tb=typeButtons(id=>{const ok=id===q.a;tb.lock(q.a,id);after(ok?10:0,esc(q.e),ok)});
+        b.append(tb.el);
+      }else if(q.k==='mt'){
+        const pairs=q.pairs.map((p,idx)=>({id:'p'+idx,l:p[0],r:p[1]}));
+        Matcher(b,{pairs,onDone:s=>{const p=Math.max(0,10-3*s.mistakes);after(p,p===10?'Perfect matching!':'Completed with '+s.mistakes+' mistake'+(s.mistakes>1?'s':'')+'. Partial credit: '+p+' points.',p>=7)}});
+      }else{
+        Sorter(b,{items:q.items,types:q.types,onDone:s=>{const p=Math.max(0,10-3*s.mistakes);after(p,p===10?'Perfect sorting!':'Completed with '+s.mistakes+' mistake'+(s.mistakes>1?'s':'')+'. Partial credit: '+p+' points.',p>=7)}});
+      }
+    };
+    show();
+  };
+  const intro=()=>{
+    const sh=shell(root,{title:'Final Challenge',instr:'Show what you have learned.',restart:intro});
+    const box=h('div','final-intro','<h3>10 questions · 100 points</h3><ul><li>Multiple choice</li><li>Drag &amp; drop</li><li>Matching</li><li>True or False</li><li>Classification</li></ul>');
+    const go=h('button','btn orange big','Begin the final challenge');go.type='button';go.onclick=start;
+    const w=h('div');w.append(go);box.append(w);sh.body.append(box);
+  };
+  if(ctx.projector)start();else intro();
+}};
+
+const GAME_IDS=['g1','g2','g3','g4','g5','g6','g7'];
+function mount(id,root,extra){
+  runCleanups();
+  root.classList.add('game');root.classList.toggle('proj',!!(extra&&extra.projector));
+  const ctx={id,projector:!!(extra&&extra.projector),done(score,max){const best=recordGame(id,score,max);extra&&extra.onDone&&extra.onDone(id,score,max);return best}};
+  GAMES[id].run(root,ctx);
+}
+
+/* ---------- Learn activities ---------- */
+const kv=(o,rows)=>{o.innerHTML='';rows.forEach(r=>{const d=h('div','kv');const a=h('span');a.textContent=r[0];const b=h('code');b.textContent=r[1];d.append(a,b);o.append(d)})};
+const ACT={
+text(c,mark){
+  c.innerHTML='<label>Type a product code or a name<input type="text" value="00125" maxlength="30"></label><div class="out"></div>';
+  const i=$('input',c),o=$('.out',c);
+  const u=()=>{const v=i.value,asNum=/^\s*-?\d+(\.\d+)?\s*$/.test(v)?String(parseFloat(v)):'not a number';
+    kv(o,[['Stored as Text',v],['Characters',String(v.length)],['If it were a Number',asNum],['Can you add 5 to it?','No: it is Text']])};
+  i.addEventListener('input',()=>{u();mark()});u();
+},
+number(c,mark){
+  c.innerHTML='<div class="row"><button class="btn sm" type="button" data-d="-1">− 1</button><button class="btn sm" type="button" data-d="1">+ 1</button><button class="btn sm orange" type="button" data-d="100">+ 100</button><button class="btn sm ghost" type="button" data-d="r">Reset</button></div><div class="out"></div>';
+  let n=25;const o=$('.out',c);
+  const u=()=>kv(o,[['Value',String(n)],['Doubled',String(n*2)],['Can you calculate?','Yes: it is a Number']]);
+  $$('button',c).forEach(b=>b.onclick=()=>{n=b.dataset.d==='r'?25:n+parseFloat(b.dataset.d);u();mark()});u();
+},
+datetime(c,mark){
+  c.innerHTML='<label>Pick a date<input type="date"></label><div class="out"></div>';
+  const i=$('input',c),o=$('.out',c),now=new Date();
+  const pad=n=>String(n).padStart(2,'0');
+  i.value=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+  const u=()=>{
+    if(!i.value){kv(o,[['Date','Choose a date']]);return}
+    const d=new Date(i.value+'T00:00:00'),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    const diff=Math.round((d-t0)/86400000);
+    kv(o,[['Stored as',i.value],['Day of week',d.toLocaleDateString('en-US',{weekday:'long'})],['Compared with today',diff===0?'Today':diff>0?'In '+diff+' days':(-diff)+' days ago']]);
+  };
+  i.addEventListener('input',()=>{u();mark()});u();
+},
+boolean(c,mark){
+  c.innerHTML='<label class="switch"><input type="checkbox" checked><span class="trk"></span><span>Item is in stock</span></label><div class="out"></div>';
+  const i=$('input',c),o=$('.out',c);
+  const u=()=>kv(o,[['in_stock',i.checked?'TRUE':'FALSE'],['Order button',i.checked?'Enabled':'Disabled'],['Possible values','Only 2']]);
+  i.addEventListener('change',()=>{u();mark()});u();
+},
+currency(c,mark){
+  c.innerHTML='<label>Price in SAR<input type="text" inputmode="decimal" value="3500"></label><div class="out"></div>';
+  const i=$('input',c),o=$('.out',c);
+  const f=n=>'SAR '+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const u=()=>{const v=parseFloat(String(i.value).replace(/,/g,''));
+    if(isNaN(v)){kv(o,[['Currency','Type an amount']]);return}
+    kv(o,[['Stored as Currency',f(v)],['As a plain Number',String(v)],['Total with 15% VAT',f(v*1.15)]])};
+  i.addEventListener('input',()=>{u();mark()});u();
+},
+percentage(c,mark){
+  c.innerHTML='<label>Discount rate: move the slider<input type="range" min="0" max="100" step="0.5" value="25"></label><div class="out"></div>';
+  const i=$('input',c),o=$('.out',c);
+  const u=()=>{const v=parseFloat(i.value);
+    kv(o,[['Shown as',v+'%'],['Stored as',String(v/100)],['Discount on SAR 3,500','SAR '+(3500*v/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})]])};
+  i.addEventListener('input',()=>{u();mark()});u();
+}};
+
+/* ---------- Page build ---------- */
+function buildPage(){
+  const tiles=$('#hero-tiles');
+  TYPES.forEach(T=>{const d=h('div','tile',T.icon+'<code></code><small>'+T.name+'</small>');d.style.setProperty('--c',T.color);$('code',d).textContent=T.glyph;tiles.append(d)});
+  const grid=$('#learn-grid');
+  TYPES.forEach((T,i)=>{
+    const c=h('article','card lcard reveal');c.dataset.id=T.id;c.style.setProperty('--c',T.color);
+    c.innerHTML='<div class="lc-head"><span class="ico">'+T.icon+'</span><div><h3>'+(i+1)+'. '+esc(T.name)+'</h3><small>'+T.sub+'</small></div><span class="done-badge">✓ Explored</span></div>'
+      +'<p class="def">'+T.def+'</p><div class="exs">'+T.ex.map(e=>'<div class="ex"><code>'+esc(e[0])+'</code><span>'+e[1]+'</span></div>').join('')+'</div>'
+      +'<p class="why">'+T.why+'</p><div class="try"><h4>Try it yourself</h4><div class="act"></div></div>';
+    grid.append(c);ACT[T.id]($('.act',c),()=>explore(T.id));
+  });
+  $('#rec-mount').append(employeeRecord(false));
+  const tabs=$('#tabs'),stage=$('#game-stage');
+  GAME_IDS.forEach((g,i)=>{
+    const t=h('button','tab','<b>'+(i+1)+'</b><span>'+GAMES[g].name+'</span>');t.type='button';t.dataset.g=g;t.setAttribute('role','tab');
+    t.onclick=()=>{$$('.tab',tabs).forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});t.classList.add('active');t.setAttribute('aria-selected','true');mount(g,stage)};
+    tabs.append(t);
+  });
+  $('.tab',tabs).click();
+  mount('final',$('#final-stage'));
+  // the final stage must not clear the games' cleanups unexpectedly: games re-mount on tab click anyway
+  updateProgress();
+  const els=$$('.reveal');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+    els.forEach(e=>io.observe(e));
+  }else els.forEach(e=>e.classList.add('in'));
+}
+function employeeRecord(all){
+  const c=h('div','rec');
+  REC.forEach(r=>{
+    const T=TM[r[2]],row=h('div','rec-row','<span class="rl"></span><code class="rv"></code><button class="btn sm rb" type="button">Reveal type</button><span class="rt">'+T.icon+T.name+'</span>');
+    row.style.setProperty('--c',T.color);$('.rl',row).textContent=r[0];$('.rv',row).textContent=r[1];
+    $('.rb',row).onclick=()=>row.classList.add('shown');
+    if(all)row.classList.add('shown');
+    c.append(row);
+  });
+  if(!all){const f=h('div','rec-foot');const b=h('button','btn teal sm','Reveal all types');b.type='button';b.onclick=()=>$$('.rec-row',c).forEach(r=>r.classList.add('shown'));f.append(b);c.append(f)}
+  return c;
+}
+
+/* ---------- Trainer mode ---------- */
+const TQ={
+ text:{q:'Which of these values is Text?',o:['4500','00125','TRUE','25%'],a:1,e:'A code with leading zeros is Text.'},
+ number:{q:'Which value is a plain Number?',o:['SAR 3500','25%','4500','TRUE'],a:2,e:'4500 has no symbol attached. SAR 3500 is Currency and 25% is a Percentage.'},
+ datetime:{q:'Which of these is a Date / Time value?',o:['Laptop','2026-10-25','SAR 3500','FALSE'],a:1,e:'2026-10-25 is a calendar date.'},
+ boolean:{q:'Which question is best answered with a Boolean?',o:['What is your name?','How old are you?','Has the invoice been paid?','When is the deadline?'],a:2,e:'A yes/no question has only two answers: TRUE or FALSE.'},
+ currency:{q:'Which value is Currency?',o:['25%','4500','SAR 3500','TRUE'],a:2,e:'SAR 3500 is an amount of money with a currency code.'},
+ percentage:{q:'Which value is a Percentage?',o:['SAR 3500','25%','00125','TRUE'],a:1,e:'The % sign makes 25% a Percentage.'}
+};
+const slides=[{k:'intro'},{k:'why'}];
+TYPES.forEach(T=>{slides.push({k:'topic',t:T.id},{k:'q',t:T.id})});
+GAME_IDS.concat(['final']).forEach(g=>slides.push({k:'game',g}));
+slides.push({k:'wrap'});
+const TKEY='dtc_trainer_v2';
+let TR=(function(){try{const s=JSON.parse(localStorage.getItem(TKEY));if(s&&typeof s.i==='number'&&s.i<slides.length)return s}catch(e){}return{i:0,correct:0,asked:0,q:{},games:{}}})();
+const saveTR=()=>{try{localStorage.setItem(TKEY,JSON.stringify(TR))}catch(e){}};
+function labelOf(s){
+  return({intro:'Welcome',why:'Why data types matter',topic:'Topic: '+(TM[s.t]&&TM[s.t].name),q:'Ask the room: '+(TM[s.t]&&TM[s.t].name),game:'Game: '+(GAMES[s.g]&&GAMES[s.g].name),wrap:'Wrap-up'})[s.k];
+}
+function updateStats(){
+  const g=Object.keys(TR.games),pt=g.reduce((a,k)=>a+TR.games[k].sc,0);
+  $('#tr-stats').textContent='Group questions: '+TR.correct+'/'+TR.asked+' correct  ·  Games played: '+g.length+'/8  ·  Game points: '+pt;
+}
+const SL={
+intro(){
+  const d=h('div','slide sl-intro','<h2>Data Types <span>Challenge</span></h2><p class="sub">Learn, Play &amp; Master the 6 Basic Data Types</p><div class="tiles" style="max-width:640px;margin:0 auto"></div><div class="objs"><div><b>1 · Learn</b>Short explanations with real workplace examples.</div><div><b>2 · Play</b>Seven games on the projector. Answer together as a group.</div><div><b>3 · Prove it</b>A final challenge to measure what we learned.</div></div>');
+  const t=$('.tiles',d);TYPES.forEach(T=>{const x=h('div','tile',T.icon+'<code></code><small>'+T.name+'</small>');x.style.setProperty('--c',T.color);x.style.background='#fff';x.style.borderColor='var(--line)';$('code',x).style.color='var(--navy)';$('code',x).textContent=T.glyph;t.append(x)});
+  return d;
+},
+why(){
+  const d=h('div','slide','<h2>Why do data types matter?</h2><p class="sub">Every order mixes several types. Ask the group: what type is each field?</p>');
+  d.append(employeeRecord(false));
+  d.append(h('div','talk','<b>Discuss:</b> What would go wrong if the product code 00125 were stored as a Number, or the price as plain Text?'));
+  return d;
+},
+topic(s){
+  const T=TM[s.t];
+  const d=h('div','slide sl-topic');d.style.setProperty('--c',T.color);
+  d.innerHTML='<div class="bigico">'+T.icon+'</div><div><h2>'+esc(T.name)+' <span style="color:var(--muted);font-weight:600;font-size:.55em">· '+T.sub+'</span></h2><p class="def">'+T.def+'</p><div class="exs">'+T.ex.map(e=>'<div class="ex"><code>'+esc(e[0])+'</code><span>'+e[1]+'</span></div>').join('')+'</div><p class="why">'+T.why+'</p><div class="talk"><b>Ask the room:</b> '+T.talk+'</div></div>';
+  return d;
+},
+q(s){
+  const Qd=TQ[s.t],idx=TR.i;
+  const st=TR.q[idx]||(TR.q[idx]={choice:null,revealed:false});
+  const d=h('div','slide tq');
+  d.append(h('h2','','Ask the room'));
+  const qt=h('p','sub qtxt');qt.textContent=Qd.q;d.append(qt);
+  const box=h('div','opts'),btns=[];
+  Qd.o.forEach((t,i)=>{
+    const b=h('button','opt','<i>'+'ABCD'[i]+'</i><span></span>');b.type='button';$('span',b).textContent=t;
+    b.onclick=()=>{if(st.revealed)return;st.choice=i;saveTR();paint()};btns.push(b);box.append(b);
+  });
+  d.append(box);
+  const act=h('div','actions'),rv=h('button','btn orange','Reveal the answer');rv.type='button';act.append(rv);d.append(act);
+  const fbHolder=h('div');d.append(fbHolder);
+  const hint=h('p','hintline','Discuss, then click the option the group chose, and reveal the answer.');d.append(hint);
+  function paint(){
+    btns.forEach((b,i)=>{
+      b.classList.toggle('picked',!st.revealed&&st.choice===i);
+      b.classList.remove('right','wrong');
+      if(st.revealed){b.disabled=true;if(i===Qd.a)b.classList.add('right');else if(i===st.choice)b.classList.add('wrong')}
+    });
+    fbHolder.innerHTML='';
+    if(st.revealed){rv.style.display='none';hint.style.display='none';
+      fbHolder.append(fbox(st.choice===Qd.a,esc(Qd.e)),h('div','talk','<b>Discuss:</b> '+TM[s.t].talk));}
+  }
+  rv.onclick=()=>{
+    if(st.choice==null){hint.textContent='Please select the answer chosen by the group first.';hint.style.color='var(--bad)';return}
+    st.revealed=true;TR.asked++;if(st.choice===Qd.a)TR.correct++;saveTR();updateStats();paint();
+  };
+  paint();return d;
+},
+game(s){
+  const G=GAMES[s.g];
+  const d=h('div','slide tr-game');
+  const launch=h('div','launch');
+  launch.innerHTML='<h2></h2><p></p>';$('h2',launch).textContent=G.name;$('p',launch).textContent=G.blurb;
+  const b=h('button','btn orange big','▶ Start on the projector');b.type='button';launch.append(b);d.append(launch);
+  b.onclick=()=>{
+    d.innerHTML='';const r=h('div');d.append(r);
+    mount(s.g,r,{projector:true,onDone:(id,sc,mx)=>{const prev=TR.games[id];const v=Math.round(Math.min(sc,mx));if(!prev||v>=prev.sc)TR.games[id]={sc:v,mx};saveTR();updateStats()}});
+  };
+  return d;
+},
+wrap(){
+  const g=Object.keys(TR.games),pt=g.reduce((a,k)=>a+TR.games[k].sc,0),acc=TR.asked?Math.round(TR.correct/TR.asked*100):0;
+  const d=h('div','slide','<h2>Wrap-up: what we learned</h2><p class="sub">Six data types. One question to ask about every value: what kind of thing is this?</p>');
+  const sb=h('div','statbox','<div><b>'+TR.correct+'/'+TR.asked+'</b>Group questions correct</div><div><b>'+acc+'%</b>Group accuracy</div><div><b>'+g.length+'/8</b>Games played</div><div><b>'+pt+'</b>Game points</div>');
+  const wg=h('div','wrapgrid');
+  TYPES.forEach(T=>{const x=h('div','','<b>'+esc(T.name)+'</b><br>'+T.def);x.style.setProperty('--c',T.color);wg.append(x)});
+  d.append(sb,wg);return d;
+}
+};
+function renderSlide(){
+  runCleanups();
+  const s=slides[TR.i],st=$('#tr-stage');st.innerHTML='';
+  st.append(SL[s.k](s));st.scrollTop=0;
+  $('#tr-label').textContent=labelOf(s);
+  $('#tr-count').textContent='Slide '+(TR.i+1)+' of '+slides.length;
+  $('#tr-prog i').style.width=((TR.i+1)/slides.length*100)+'%';
+  $('#tr-prev').disabled=TR.i===0;
+  $('#tr-next').textContent=TR.i===slides.length-1?'Finish ✓':'Next →';
+  updateStats();saveTR();
+}
+function trGo(d){
+  const n=TR.i+d;
+  if(n>=slides.length){closeTrainer();return}
+  if(n<0)return;TR.i=n;renderSlide();
+}
+function openTrainer(){$('#trainer').classList.add('open');document.body.style.overflow='hidden';renderSlide()}
+function closeTrainer(){
+  runCleanups();$('#trainer').classList.remove('open');document.body.style.overflow='';$('#tr-stage').innerHTML='';
+  if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen();
+  mount(($('.tab.active')||{dataset:{g:'g1'}}).dataset.g,$('#game-stage'));
+}
+
+/* ---------- wiring ---------- */
+buildPage();
+$('#open-trainer').onclick=openTrainer;
+$('#tr-exit').onclick=closeTrainer;
+$('#tr-prev').onclick=()=>trGo(-1);
+$('#tr-next').onclick=()=>trGo(1);
+$('#tr-reset').onclick=()=>{if(confirm('Restart the trainer session? Group scores will be reset.')){TR={i:0,correct:0,asked:0,q:{},games:{}};saveTR();renderSlide()}};
+$('#tr-fs').onclick=()=>{const t=$('#trainer');if(document.fullscreenElement){document.exitFullscreen()}else if(t.requestFullscreen){t.requestFullscreen()}};
+document.addEventListener('keydown',e=>{
+  if(!$('#trainer').classList.contains('open'))return;
+  if(/INPUT|TEXTAREA|SELECT/.test((e.target.tagName||'')))return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();trGo(1)}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();trGo(-1)}
+  else if(e.key==='Escape'&&!document.fullscreenElement){closeTrainer()}
+});
+$('#reset-all').onclick=()=>{
+  if(!confirm('Reset all saved progress on this device?'))return;
+  P={learn:{},games:{}};saveP();
+  TR={i:0,correct:0,asked:0,q:{},games:{}};saveTR();
+  updateProgress();
+  $$('.lcard .act').forEach((a,i)=>{ACT[TYPES[i].id](a,()=>explore(TYPES[i].id))});
+  mount(($('.tab.active')||{dataset:{g:'g1'}}).dataset.g,$('#game-stage'));
+  mount('final',$('#final-stage'));
+};
+})();
+</script>
+</body>
+</html>
